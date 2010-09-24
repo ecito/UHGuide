@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -308,8 +310,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -324,10 +324,6 @@
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>Sqlite.m</string>
-										<key>_historyCapacity</key>
-										<integer>0</integer>
-										<key>bookmark</key>
-										<string>651D968A124CDDEE007C92BB</string>
 										<key>history</key>
 										<array>
 											<string>651D9628124CD9CB007C92BB</string>
@@ -344,14 +340,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {836, 410}}</string>
+								<string>{{0, 0}, {836, 404}}</string>
 								<key>RubberWindowFrame</key>
 								<string>103 131 1134 637 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>410pt</string>
+							<string>404pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -364,14 +360,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 415}, {836, 181}}</string>
+								<string>{{0, 409}, {836, 187}}</string>
 								<key>RubberWindowFrame</key>
 								<string>103 131 1134 637 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>181pt</string>
+							<string>187pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -390,9 +386,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>651D8E7A124CAE48007C92BB</string>
+				<string>651D96D1124CDE80007C92BB</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>651D8E7B124CAE48007C92BB</string>
+				<string>651D96D2124CDE80007C92BB</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -530,10 +526,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>651D9245124CBDC7007C92BB</string>
-		<string>651D9247124CBDC7007C92BB</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>651D8E7D124CAE48007C92BB</string>
 		<string>/Users/andre/work/UHGuide/UHGuide.xcodeproj</string>
 	</array>
@@ -554,14 +546,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Sqlite.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -617,7 +607,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>651D8E7D124CAE48007C92BB</string>
-				<string>651D8E7E124CAE48007C92BB</string>
+				<string>651D96D3124CDE80007C92BB</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
