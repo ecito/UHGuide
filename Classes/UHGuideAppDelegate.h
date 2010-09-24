@@ -6,7 +6,7 @@
 //  Copyright Squirrel Hero 2010. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Three20/Three20.h>
 
 @interface UHGuideAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
