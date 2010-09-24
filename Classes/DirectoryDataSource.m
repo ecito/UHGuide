@@ -33,11 +33,11 @@
 
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
-	NSLog(@"load");
+// NSLog(@"load");
 
 	
   if (!self.isLoading && TTIsStringWithAnyText(searchQuery)) {
-		NSLog(@"loading...");
+	// NSLog(@"loading...");
 		
 //		NSString* filteredSearchQuery = [[searchQuery componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
 
@@ -47,7 +47,7 @@
 //		NSString* filteredSearchQuery = [[searchQuery componentsSeparatedByCharactersInSet:[set invertedSet]] componentsJoinedByString:@""];
 		NSString *escapedSearchQuery = [searchQuery stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-		NSLog(@"filtered: %@", escapedSearchQuery);
+	// NSLog(@"filtered: %@", escapedSearchQuery);
 		
 		NSString* url = [NSString stringWithFormat:kDirectorySearchURL, escapedSearchQuery, affiliation];
 
@@ -113,7 +113,7 @@
 - (void)search:(NSString*)text withinScope:(NSString*)scope {
 	
 	[self cancel];
-	NSLog(@"searching: %@", text);
+// NSLog(@"searching: %@", text);
 	
   if (text.length > 3) {
 		searchQuery = [text copy];
@@ -129,14 +129,14 @@
 -(void)searchLDAP:(NSString*)query affiliationOrNil:(NSString*)aff {
 	NSArray* search_result;
 	NSError* searchError;
-	NSLog(@"Hello!");
+// NSLog(@"Hello!");
 	
 	RHLDAPSearch *mySearch = [[RHLDAPSearch alloc] initWithURL:@"ldap://directory.uh.edu/"];
 	search_result = [mySearch searchWithQuery:@"(&(cn=*paris*)(affiliation=Faculty))" withinBase:@"o=University of Houston" usingScope:RH_LDAP_SCOPE_SUBTREE error:&searchError];
 	
-	NSLog(@"search: %@", search_result);
+// NSLog(@"search: %@", search_result);
 	if ( search_result == nil ) {
-		NSLog(@"Search error: %@", [[searchError userInfo] valueForKey:@"err_msg"]);
+	// NSLog(@"Search error: %@", [[searchError userInfo] valueForKey:@"err_msg"]);
 	}
 	
 	[mySearch release];
@@ -186,7 +186,7 @@
   self.items = [NSMutableArray array];
   self.sections = [NSMutableArray array];
 	
-	NSLog(@"people: %@", directory.people);
+// NSLog(@"people: %@", directory.people);
   NSMutableDictionary* groups = [NSMutableDictionary dictionary];
   for (Person* person in directory.people) {
     NSString* letter = [NSString stringWithFormat:@"%c", [person.lastName characterAtIndex:0]];
@@ -213,7 +213,7 @@
 }
 
 - (void)search:(NSString*)text withinScope:(NSString*)scope {
-	NSLog(@"Scope %@", scope);
+// NSLog(@"Scope %@", scope);
 	if ([scope isEqualToString:@"All"]) {
 		[directory search:text withinScope:nil];
 	} else {

@@ -37,7 +37,7 @@
 	
    // [window makeKeyAndVisible];
 	
-	//[FlurryAPI startSession:@"4LQW47CIJQQIKTCD2D61"];
+	[FlurryAPI startSession:@"4LQW47CIJQQIKTCD2D61"];
 	
 	
 	[TTStyleSheet setGlobalStyleSheet:[[[GlobalStyleSheet alloc] init] autorelease]]; 
@@ -50,7 +50,7 @@
 	
 	[map from:@"uh://launcher" toViewController:[LauncherViewController class]];
 	[map from:@"uh://campusmap" toViewController:[MapViewController class]];
-	[map from:@"uh://weather" toViewController:[WeatherViewsController class]];
+	[map from:@"uh://weather" toSharedViewController:[WeatherViewsController class]];
 	
 	[map from:@"uh://people" toViewController:[DirectoryViewController class]];
 	[map from:@"uh://person?" toViewController:[PersonViewController class]];
@@ -75,6 +75,8 @@
 	/*
 	 Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 	 */
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ApplicationDidBecomeActive" object:nil];
+
 	NetworkUtility *nUtil = [NetworkUtility sharedInstance];
 	[nUtil startNetwork];
 }

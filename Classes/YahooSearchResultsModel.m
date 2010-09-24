@@ -38,7 +38,7 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more
 {
 //	if (!searchTerms) {
-//		NSLog(@"No search terms specified. Cannot load the model resource.");
+//	// NSLog(@"No search terms specified. Cannot load the model resource.");
 //		return;
 //	}
     

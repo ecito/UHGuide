@@ -23,7 +23,7 @@
 
 - (void)getAllCategories
 {	
-	NSLog(@"Getting all Categories");
+	//NSLog(@"Getting all Categories");
 
 	// Create NSURL string for categories
 	NSString *urlAddress = @"http://uhcamp.us.to/categories.json";
@@ -58,7 +58,7 @@
 {
 	if (request.respondedFromCache == YES)
 	{
-		NSLog(@"requestDidFinishLoad: Responding from cache %d", request.cacheExpirationAge);
+		//NSLog(@"requestDidFinishLoad: Responding from cache %d", request.cacheExpirationAge);
 	}
 	
 	TTNetworkRequestStopped();
@@ -67,7 +67,7 @@
 
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error
 {
-	NSLog(@"Connection failed: %@", [error description]);
+// NSLog(@"Connection failed: %@", [error description]);
 	TTNetworkRequestStopped();
 	
 	// Error Domain=NSURLErrorDomain Code=-1009 UserInfo=0x373db0 "no Internet connection"
@@ -87,25 +87,25 @@
 	
     // Parse the JSON data that we retrieved from the server.
     NSMutableArray *categoriesArray = [responseBody JSONValue];
-	NSLog(@"Categories JSON:\n%@", responseBody);
+// NSLog(@"Categories JSON:\n%@", responseBody);
     [responseBody release];
 
 	// Loop through each entry in the dictionary...
 	for (NSDictionary *categoryDictionary in categoriesArray)
 	{
 		NSDictionary *categoryData = [categoryDictionary objectForKey:@"category"];
-		NSLog(@"Adding interest object: %@", [categoryData objectForKey:@"name"]);
+	// NSLog(@"Adding interest object: %@", [categoryData objectForKey:@"name"]);
 		
 		NSString *source = [categoryData objectForKey:@"source"];
 		BOOL shouldCache;
 		if ([source isEqualToString:@"static"])
 		{
-			NSLog(@"Should use CACHE");
+		// NSLog(@"Should use CACHE");
 			shouldCache = YES; // static 
 		}
 		else
 		{
-			NSLog(@"Should NOT use CACHE");
+		// NSLog(@"Should NOT use CACHE");
 			shouldCache = NO; // dynamic
 		}
 		

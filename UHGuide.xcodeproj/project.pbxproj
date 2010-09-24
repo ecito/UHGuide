@@ -1840,17 +1840,17 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-force_load",
-					"Vendor/three20/Build/Products/Debug-iphoneos/libThree20UICommon.a",
+					"Vendor/three20/Build/Products/Release-iphoneos/libThree20UICommon.a",
 					"-force_load",
-					"Vendor/three20/Build/Products/Debug-iphoneos/libThree20Network.a",
+					"Vendor/three20/Build/Products/Release-iphoneos/libThree20Network.a",
 					"-force_load",
-					"Vendor/three20/Build/Products/Debug-iphoneos/libThree20UINavigator.a",
+					"Vendor/three20/Build/Products/Release-iphoneos/libThree20UINavigator.a",
 					"-force_load",
-					"Vendor/three20/Build/Products/Debug-iphoneos/libThree20UI.a",
+					"Vendor/three20/Build/Products/Release-iphoneos/libThree20UI.a",
 					"-force_load",
-					"Vendor/three20/Build/Products/Debug-iphoneos/libThree20Style.a",
+					"Vendor/three20/Build/Products/Release-iphoneos/libThree20Style.a",
 					"-force_load",
-					"Vendor/three20/Build/Products/Debug-iphoneos/libThree20Core.a",
+					"Vendor/three20/Build/Products/Release-iphoneos/libThree20Core.a",
 					"-ObjC",
 				);
 				PRODUCT_NAME = UHGuide;

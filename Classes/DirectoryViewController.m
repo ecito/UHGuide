@@ -36,7 +36,7 @@
 	
   searchController.dataSource = [[[DirectorySearchDataSource alloc] init] autorelease];
 	searchController.delegate = searchController.dataSource;
-	
+
 	
   self.searchViewController = searchController;
   self.tableView.tableHeaderView = _searchController.searchBar;
@@ -45,6 +45,7 @@
 	
 	NSArray *buttonTitles = [NSArray arrayWithObjects:@"All", @"Faculty", @"Students", @"Staff", nil];
 	_searchController.searchBar.scopeButtonTitles = buttonTitles;
+	_searchController.searchBar.placeholder = @"Enter a name to search";
 }
 
 @end

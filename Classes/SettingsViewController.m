@@ -48,11 +48,11 @@
 	{
 		if (buttonIndex == 0)
 		{
-			NSLog(@"Cancelling");
+		// NSLog(@"Cancelling");
 		}
 		else
 		{
-			NSLog(@"Clearing cache");
+		// NSLog(@"Clearing cache");
 			//[[Beacon shared] startSubBeaconWithName:@"settng: Cleared Cache" timeSession:NO];
 			[FlurryAPI logEvent:@"settng: Cleared Cache"];
 

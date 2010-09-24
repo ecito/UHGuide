@@ -10,7 +10,7 @@
 
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {
-	NSLog(@"Got response");
+// NSLog(@"Got response");
 
     NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 

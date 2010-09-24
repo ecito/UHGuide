@@ -27,7 +27,7 @@
 
 - (void)openCreditsView:(id)sender;
 {
-	NSLog(@"Go to Credits!");
+// NSLog(@"Go to Credits!");
 	//[[TTNavigator navigator] openURL:@"uh://credits" animated:YES]; //deprecated
 	TTOpenURL(@"uh://credits");
 }
@@ -86,10 +86,10 @@
 //		
 //	}
 	
-	TTLauncherItem *test = [[[TTLauncherItem alloc] initWithTitle:@"Settings"
-																										image:@"bundle://settings.png"
-																											URL:@"uh://settings" 
-																								canDelete:NO] autorelease];
+//	TTLauncherItem *test = [[[TTLauncherItem alloc] initWithTitle:@"Settings"
+//																										image:@"bundle://settings.png"
+//																											URL:@"uh://settings" 
+//																								canDelete:NO] autorelease];
 	
 	
 	
@@ -152,14 +152,15 @@
 //	[weatherController getWeather];								
 }
 
+
 -(void)twitterFeedViewUpdateSuccessful {
-	NSLog(@"YAY");
+// NSLog(@"YAY");
 	[twitterFeedActivityIndicator stopAnimating];
 
 }
 
 -(void)twitterFeedViewUpdateFailed {
-	NSLog(@"NAY");
+// NSLog(@"NAY");
 	[twitterFeedActivityIndicator stopAnimating];
 	uhPresLabel.hidden = YES;
 	uhPres.hidden = YES;
@@ -169,7 +170,7 @@
 - (void)updateBadgeNumber:(NSNotification *)notification
 {
 	NSMutableDictionary *badgeDictionary = [notification object];
-	NSLog(@"Updating url[%@] with badge number[%d]", [badgeDictionary objectForKey:@"url"], [[badgeDictionary objectForKey:@"number"] intValue]);
+// NSLog(@"Updating url[%@] with badge number[%d]", [badgeDictionary objectForKey:@"url"], [[badgeDictionary objectForKey:@"number"] intValue]);
 	TTLauncherItem* item = [_launcherView itemWithURL:[badgeDictionary objectForKey:@"url"]];
 	item.badgeNumber = [[badgeDictionary objectForKey:@"number"] intValue];
 }
@@ -177,7 +178,7 @@
 //- (void)updateWeatherBadge:(NSNotification *)notification
 //{
 //	int currentTemp = weatherController.currentTemperature;
-//	NSLog(@"Updating weather badge with %d", currentTemp);
+//// NSLog(@"Updating weather badge with %d", currentTemp);
 //	TTLauncherItem* item = [_launcherView itemWithURL:@"uh://weather"];
 //	item.badgeNumber = currentTemp;
 //}

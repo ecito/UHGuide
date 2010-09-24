@@ -653,7 +653,7 @@
 		// Only search if we have a non-zero length query string
 		//filteredBuildings = [buildings mutableCopy];
 		//[filteredBuildings addObjectsFromArray:buildings];
-		//	NSLog(@"array:%@", filteredNames);
+		//// NSLog(@"array:%@", filteredNames);
 		
 	}
 	else
@@ -950,7 +950,7 @@
 		if ([markerClass isKindOfClass: [Interest class]])
 		{
 			Interest *interest = markerClass;
-			NSLog(@"Removing marker, %@", interest.name);
+		// NSLog(@"Removing marker, %@", interest.name);
 			[markerManager removeMarker:marker];
 			marker = nil;
 			[marker release];
@@ -1073,7 +1073,7 @@
 					
 		if ([interest.category compare:@"Parking"] == 32)
 		{
-			NSLog(@"Parking!");
+		// NSLog(@"Parking!");
 			//TTAlert(@"Parking Info for Lot %@:\n %@", interest.name, interest.description);
 		}
 		else 
@@ -1279,8 +1279,8 @@
 - (void)dealloc 
 {
 	//[[Beacon shared] endSubBeaconWithName:@"mapView: Opened mapView"];
-	[FlurryAPI endTimedEvent:@"mapView: Opened mapView"];
-
+	[FlurryAPI endTimedEvent:@"mapView: Opened mapView" withParameters:nil];
+	
 	self.searchBar.delegate = nil;
 	self.resultsTableView.delegate = nil;
 	self.mapView.delegate = nil;

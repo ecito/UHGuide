@@ -19,6 +19,7 @@
 - (id)init
 {
 	weatherController = [[WeatherController alloc] init];
+	weatherController.delegate = self;
 	
 	badgeDictionary = [[NSMutableDictionary alloc] initWithCapacity:2];
 	[badgeDictionary setObject:@"uh://weather" forKey:@"url"];
@@ -26,26 +27,25 @@
 	return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	//[[Beacon shared] startSubBeaconWithName:@"weather: at weatherView" timeSession:YES];
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+//[[Beacon shared] startSubBeaconWithName:@"weather: at weatherView" timeSession:YES];
 	[FlurryAPI logEvent:@"weather: at weatherView" timed:YES];
 
 	self.title = @"Weather";
 
 	NetworkUtility *nUtil = [NetworkUtility sharedInstance]; 
 	if ([nUtil startNetwork] == NotReachable) {
-		UIAlertView *noInternet = 
-			[[[UIAlertView alloc] initWithTitle:@"Internet Connection Unavailable"
-									message:@"Sorry, we were unable to load Weather information because an Internet connection could not be found."
-								   delegate:self cancelButtonTitle:@"Ok" 
-						  otherButtonTitles:nil, nil] autorelease];
-		
-		[noInternet show];
+		[self showConnectionError];
 	} 
 	else
 	{
+		for (id aView in [self.view subviews]) {
+			if ([aView class] == [TTImageView class]) {
+				[aView removeFromSuperview];
+			}
+		}
 		TTImageView *imageView = [[TTImageView alloc] initWithFrame:CGRectMake(26, 214, 264, 198)];
 		imageView.urlPath = [NSString stringWithFormat:@"http://images.webcams.travel/webcam/1239991620.jpg?%d",
 												 (long)[[NSDate date] timeIntervalSince1970]];
@@ -54,14 +54,30 @@
 
 		//http://wwc.instacam.com/instacamimg4/huton/12102009/121020091900_l.jpg
 
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(updateWeatherViewWith:) 
-												 name:@"LoadedWeatherData" object:nil];
-		
-		// Request weather
-		[weatherController getWeather];
+		[self loadWeatherData];
 	}
+}
+
+- (void)didReceiveWeatherData:(NSArray *)weatherData {
+	[self receivedWeatherData:weatherData];
+}
+
+- (void)loadWeatherData {		
+	[weatherController getWeather];
+}
+- (void)receivedWeatherData:(NSArray*)weatherData {
+	[self updateWeatherViewWith:weatherData];
+}
+
+- (void)showConnectionError {
+	UIAlertView *noInternet = 
+	[[[UIAlertView alloc] initWithTitle:@"Internet Connection Unavailable"
+															message:@"Sorry, we were unable to load Weather information because an Internet connection could not be found."
+														 delegate:self cancelButtonTitle:@"Ok" 
+										otherButtonTitles:nil, nil] autorelease];
+	
+	[noInternet show];	
+	
 }
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -73,10 +89,10 @@
 	}
 }
 
-- (void)updateWeatherViewWith:(NSNotification *)notification
+- (void)updateWeatherViewWith:(NSArray*)weatherJSON
 {
 	// Loop through each entry in the dictionary...
-	for (NSDictionary *day in weatherController.weatherData)
+	for (NSDictionary *day in weatherJSON)
 	{
 		NSString *icon;
 		NSString *iconURL;
@@ -110,14 +126,37 @@
 
 - (void)dealloc 
 {
+	
+	
+	[currentTemp release];
+	[todayHighTemp release];
+	[todayLowTemp release];
+	[tomorrowHighTemp release];
+	[tomorrowLowTemp release];
+	[todayDay release];
+	[tomorrowDay release];
+	[lastUpdated release];
+	
+	[todayPic release];
+	[tomorrowPic release];
+	
+	
+	[weatherController release];
+	
+	
+	
+	
+	
 	//[[Beacon shared] endSubBeaconWithName:@"weather: at weatherView"];
-	[FlurryAPI endTimedEvent:@"weather: at weatherView"];
-
+	[FlurryAPI endTimedEvent:@"weather: at weatherView" withParameters:nil];
+	[weatherController cancelRequest];
 	[days release];
 	[badgeDictionary release];
-	[[NSNotificationCenter defaultCenter] removeObserver:self 
-										 name:@"LoadedWeatherData"
-										 object:nil];
+	
+	
+	NSLog(@"Deallocing");
+	
+	
 	
 	[super dealloc];
 }	

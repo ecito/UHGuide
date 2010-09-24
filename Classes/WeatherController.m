@@ -13,13 +13,16 @@
 
 @synthesize weatherData, currentTemperature;
 @synthesize loadingView;
+@synthesize delegate;
 
 - (id)init
 {
-	responseData = [[NSMutableData data] retain];
-	weatherData = [[NSMutableArray alloc] init];
-	currentTemperature = 0;
-
+	if (self = [super init]) {
+		responseData = [[NSMutableData data] retain];
+		
+		currentTemperature = 0;
+		delegate = nil;
+	}
 	return self;
 }
 
@@ -28,7 +31,7 @@
 	TTNetworkRequestStarted();
 	loadingView = [P31LoadingView loadingViewShowWithLoadingMessage];
 	
-	NSLog(@"Getting weather data!");
+// NSLog(@"Getting weather data!");
 	// URL to obtain the weather data
 	NSString *urlString = @"http://uhcamp.us.to/weathers/current";
 	
@@ -41,6 +44,12 @@
 	[request release];	
 }
 
+
+- (void)cancelRequest {
+	weatherData = nil;
+}
+
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	[responseData setLength:0];
 }
@@ -50,7 +59,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	NSLog(@"Connection failed: %@", [error description]);
+// NSLog(@"Connection failed: %@", [error description]);
 	
 	TTNetworkRequestStopped();
 	[loadingView performSelector:@selector(hide) withObject:nil afterDelay:0.1];
@@ -74,20 +83,25 @@
 	NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 	
 	// Create a dictionary from the JSON string
-	weatherData = [jsonString JSONValue];
+	weatherData = nil;
+	weatherData = [[jsonString JSONValue] retain];
 	
-	currentTemperature = (int)[[[[weatherData objectAtIndex:0] objectForKey:@"current"] objectForKey:@"fahrenheit"] floatValue];
-	NSLog(@"Loaded weather %d", currentTemperature);
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"LoadedWeatherData" object:nil];
-
+	if (weatherData) {
+		currentTemperature = (int)[[[[weatherData objectAtIndex:0] objectForKey:@"current"] objectForKey:@"fahrenheit"] floatValue];
+	// NSLog(@"Loaded weather %d", currentTemperature);
+		
+		if (delegate && [delegate respondsToSelector:@selector(didReceiveWeatherData:)]) {
+			[delegate didReceiveWeatherData:weatherData];
+		}
+	}
 	TTNetworkRequestStopped();
 	[loadingView performSelector:@selector(hide) withObject:nil afterDelay:0.1];
 }
 
 - (void)dealloc
 {
-	[weatherData release];
+	delegate = nil;
+	[weatherData release], weatherData = nil;
 	[responseData release];
     [super dealloc];
 }

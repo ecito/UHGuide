@@ -20,14 +20,15 @@
 
 	NSMutableData *responseData;
 	TTURLRequest *urlRequest;
+	TTStyledTextLabel* tweetLabel;
 	id <TwitterFeedViewDelegate>delegate;
 }
 
 @property(nonatomic,retain)TTURLRequest *urlRequest;
 @property(nonatomic,assign)id delegate;
-
+@property(nonatomic, retain) TTStyledTextLabel* tweetLabel;
 -(void)addStuffToView;
--(void)searchTwitter:(NSString *)twitterURL;
+-(void)searchTwitter;
 -(void)addTwitterText:(NSString*)text;
 - (void)transitionFromBottomUp;
 

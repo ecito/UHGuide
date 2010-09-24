@@ -9,11 +9,11 @@
 #import <Three20/Three20.h>
 #import "JSON.h"
 #import "WeatherController.h"
+@protocol WeatherControllerDelegate;
 
-@interface WeatherViewsController : UIViewController <UIAlertViewDelegate>
+@interface WeatherViewsController : UIViewController <UIAlertViewDelegate, WeatherControllerDelegate>
 {
 	NSMutableArray * days;
-	
 	NSInteger currentTemperature;
 	
 	UILabel *currentTemp;
@@ -52,6 +52,5 @@
 
 @property (nonatomic, retain) WeatherController *weatherController;
 
-- (void)updateWeatherViewWith:(NSNotification *)notification;
 
 @end

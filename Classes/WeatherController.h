@@ -11,6 +11,12 @@
 #import "JSON.h"
 #import "P31.h"
 
+@protocol WeatherControllerDelegate <NSObject>
+
+-(void)didReceiveWeatherData:(NSArray*)weatherData;
+
+@end
+
 @interface WeatherController : NSObject
 {
 	NSMutableArray *weatherData;
@@ -18,11 +24,14 @@
 	
 	NSInteger currentTemperature;
 	P31LoadingView *loadingView;
+	
+	id<WeatherControllerDelegate> delegate;
 }
 
 @property(nonatomic,retain)NSMutableArray *weatherData;
 @property(nonatomic,assign)NSInteger currentTemperature;
 @property(nonatomic,retain)P31LoadingView *loadingView;
+@property(nonatomic,assign)id delegate;
 
 - (id)init;
 - (void)getWeather;

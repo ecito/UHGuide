@@ -41,7 +41,7 @@
   if( !self.isLoading && TTIsStringWithAnyText(_category) ) {
     NSString* url = [NSString stringWithFormat:@"http://uhcamp.us.to/social_categories/%@/social_links", _category];
 		
-		NSLog(@"connecting to: %@", url);
+	// NSLog(@"connecting to: %@", url);
     TTURLRequest* request = [TTURLRequest
 														 requestWithURL: url
 														 delegate: self];
@@ -121,7 +121,7 @@
   for (NSDictionary *linkDict in _socialLinksModel.allSocialLinks) {
 
 		NSDictionary *linkItem = [linkDict objectForKey:@"social_link"];
-		NSLog(@"link: %@", linkDict);	
+	// NSLog(@"link: %@", linkDict);	
 		if ([linkItem objectForKey:@"title"] != [NSNull null])
 		{
 			NSString *title = [linkItem objectForKey:@"title"];

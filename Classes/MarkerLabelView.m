@@ -13,7 +13,7 @@
 
 
 - (id)initWithFrame:(CGRect)frame {
-	NSLog(@"Creating MarkerLabelView");
+// NSLog(@"Creating MarkerLabelView");
     if (self = [super initWithFrame:frame]) {
 	
 //	TTShapeStyle *label = [TTShapeStyle styleWithShape:[TTSpeechBubbleShape shapeWithRadius:5 pointLocation:290
@@ -57,7 +57,7 @@
 // Handles the start of a touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	NSLog(@"Touches began!");
+// NSLog(@"Touches began!");
 //    NSUInteger numTaps = [[touches anyObject] tapCount];
 //	touchPhaseText.text = @"Phase: Touches began";
 //	touchInfoText.text = @"";

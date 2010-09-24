@@ -101,7 +101,8 @@
 
 - (void)dealloc {
 	//[[Beacon shared] endSubBeaconWithName:@"credits: opened creditsView"];
-	[FlurryAPI endTimedEvent:@"credits: opened creditsView"];
+	
+	[FlurryAPI endTimedEvent:@"credits: opened creditsView" withParameters:nil];
 
     [super dealloc];
 }

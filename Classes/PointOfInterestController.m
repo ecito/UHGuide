@@ -37,7 +37,7 @@
 - (void)getAllPointsOfInterestFromCategory:(NSString *)aCategory withCache:(BOOL)cacheStatus
 {
 
-	NSLog(@"Getting All Points of Interest From Category %@", aCategory);
+// NSLog(@"Getting All Points of Interest From Category %@", aCategory);
 	interestRequested = aCategory;
 	
 	// URL to obtain the points of interest
@@ -82,7 +82,7 @@
 {
 	if (request.respondedFromCache == YES)
 	{
-		NSLog(@"requestDidFinishLoad: Responding from CACHE");
+	// NSLog(@"requestDidFinishLoad: Responding from CACHE");
 	}
 	
 	TTNetworkRequestStopped();
@@ -91,7 +91,7 @@
 
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error
 {
-	NSLog(@"PointOfInterestController Connection failed: %@", [error description]);
+// NSLog(@"PointOfInterestController Connection failed: %@", [error description]);
 	TTNetworkRequestStopped();
 	
 	// Error Domain=NSURLErrorDomain Code=-1009 UserInfo=0x373db0 "no Internet connection"
@@ -122,7 +122,7 @@
 	{
 		NSDictionary *interest = [interestObject objectForKey:@"interest"];
 		
-		NSLog(@"Adding interest object: %@", [interest objectForKey:@"name"]);
+	// NSLog(@"Adding interest object: %@", [interest objectForKey:@"name"]);
 		Interest *newInterest = [[Interest alloc] initWithName:[interest objectForKey:@"name"]
 							   category:[interest objectForKey:@"category_name"]
 							description:[interest objectForKey:@"description"]

@@ -27,7 +27,11 @@
 
 -(void)addStuffToView
 {
-	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+																					 selector:@selector(searchTwitter)
+																							 name:@"ApplicationDidBecomeActive" 
+																						 object:nil];
+
 	
 	self.style = [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5]
 	
@@ -38,8 +42,7 @@
 								[TTSolidFillStyle styleWithColor:RGBCOLOR(158, 11, 15) next:
 								 [TTSolidBorderStyle styleWithColor:RGBCOLOR(142, 61, 0) width:1 next:nil]]];
 	
-	NSString *url = @"http://search.twitter.com/search.json?q=from%3AUHPres&rpp=1";
-	[self searchTwitter:url];
+	[self searchTwitter];
 		
 }
 
@@ -48,8 +51,12 @@
 	
 	// 140 char test
 	//text = @"asldjf laksdj laskdjf laskdjf laksjdf lkfjdslakj laksjdfl kj jfkdjoapuoapuwne b fpieubwfpiube abpsudhufh hfudhushauhp asdufn n fuewnaunjfewq";
-	
-	TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)] autorelease];
+	for (id view in self.subviews) {
+		if ([view class] == [TTStyledTextLabel class]) {
+			[view removeFromSuperview];
+		}
+	}
+	TTStyledTextLabel* label1 = [[TTStyledTextLabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 	label1.font = [UIFont systemFontOfSize:14];
 	label1.textColor = [UIColor whiteColor];
 	label1.text = [TTStyledText textFromXHTML:text lineBreaks:YES URLs:NO];
@@ -57,13 +64,14 @@
 	label1.backgroundColor = [UIColor clearColor];
 	[label1 sizeToFit];
 	[self addSubview:label1];	
-	
+	[label1 release];
 	
 }
 	
-- (void)searchTwitter:(NSString *)twitterURL
+- (void)searchTwitter
 {
 			
+	NSString *twitterURL = @"http://search.twitter.com/search.json?q=from%3AUHPres&rpp=1";
 	// Cancel and Release any old requests
 	if (urlRequest)
 	{

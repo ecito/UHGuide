@@ -32,7 +32,7 @@
 
 - (void)dealloc
 {
-	NSLog(@"dealloc photos"); //wtf this gets called right after loading but everything still works fine
+// NSLog(@"dealloc photos"); //wtf this gets called right after loading but everything still works fine
     [photoSource release];
     [super dealloc];
 }
